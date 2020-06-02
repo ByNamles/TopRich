@@ -1,0 +1,5 @@
+name: TopRich
+main: TopRich\Base
+api: 3.9.3
+version: 1
+author: TalhaK
