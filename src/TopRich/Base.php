@@ -22,14 +22,12 @@ class Base extends PluginBase implements Listener{
 	  	$this->getLogger()->info("Aktif.");
 	  	$this->economy = EconomyAPI::getInstance();
 	  	$this->getServer()->getPluginManager()->registerEvents($this, $this);
+		  $this->getScheduler()->scheduleDelayedTask(new BaseTask($this, $player), 1);
 	  }
 
    
 	  
-	  public function join(PlayerJoinEvent $e){
-	  	$player = $e->getPlayer();
-	  	$this->getScheduler()->scheduleDelayedTask(new BaseTask($this, $player), 1);
-	  }
+	
 	  public function getTopTenList() : string{
         $data = $this->economy->getAllMoney() ?? self::$default;
         arsort($data);
