@@ -11,6 +11,7 @@ use pocketmine\command\{CommandSender as Cs, Command as Cmd};
 use onebone\economyapi\EconomyAPI;
 use pocketmine\entity\Entity;
 use pocketmine\scheduler\TaskScheduler;
+use pocketmine\event\player\PlayerJoinEvent;
 
 class Base extends PluginBase implements Listener{
 	
@@ -24,7 +25,11 @@ class Base extends PluginBase implements Listener{
 	  	$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		  $this->getScheduler()->scheduleDelayedTask(new BaseTask($this, $player), 1);
 	  }
-
+	
+	public function onJoin(PlayerJoinEvent $e){
+		$player = $e->getPlayer();
+		  $this->getScheduler()->scheduleDelayedTask(new BaseTask($this, $player), 20*5);
+	}
    
 	  
 	
